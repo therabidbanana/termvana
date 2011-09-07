@@ -42,7 +42,7 @@ module Termvana
         
         # assign result to result storage variable
         case @result_operator
-        when '=>', '=>>'
+        when '=>', '=>>', ':='
           result_literal   = "[]"
           formatted_result = "File.read('#{ temp_file }').split($/)"
           operator = @result_operator == '=>>' ? '+=' : '='
@@ -59,7 +59,7 @@ module Termvana
         %
 
         # ruby_command_code << "raise( SystemCallError.new $?.exitstatus ) if !_\n" # easy auto indent
-        ruby_command_code << "if !_ then raise( SystemCallError.new $?.exitstatus ) else #{@result_storage} end"
+        # ruby_command_code << "if !_ then raise( SystemCallError.new $?.exitstatus ) else #{@result_storage} end"
         @stdout, @stderr, result = Util.capture_all { super(@input = ruby_command_code)}
         result
       when :mixed # call the ruby method, but with shell style arguments TODO more shell like (e.g. "")
@@ -121,7 +121,7 @@ module Termvana
       stdout, stderr, output = Util.capture_all { super }
       @stdout << (stdout.empty? ? output : stdout)
       @stderr << stderr
-      output = Util.format_output @stdout
+      output = Util.format_output(@stdout, (@command_mode != :ruby))
       output = "<div class='nirvana_warning'>#{@stderr}</div>" + output unless @stderr.to_s.empty?
       output
     end

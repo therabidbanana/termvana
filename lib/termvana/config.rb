@@ -27,15 +27,19 @@ force           = '(?<force>[\^])'
 command         = '(?<command>[a-zA-Z\/_-]+)'
 result_operator = '(?<result_operator>[=|~]>{1,2})'
 result_storage  = '(?<result_storage>[a-zA-Z@\$_][a-zA-Z0-9@_\[\]:"\']*)'
+result_assign   = '(?<result_storage>[a-zA-Z@\$_][a-zA-Z0-9@_\[\]:"\']+)'
 _store          = "(?:#{ result_operator }\s*#{ result_storage })?"  # matches for example: "=> here"
+_assign         = "(?:#{ result_assign }\s+(?<result_operator>:=))"  # matches for example: "=> here"
 _anything_but_these = '(?!(?:[=%*]|!=|\+=|-=|\/=)).*?'
 
 Ripl.config[:fresh_patterns] = [
   /^#{ force }(?<command_line>.*?)#{ _store }$/,                             # [0] force system
-  nil, nil, nil, nil,
+  /^#{ _assign }\s*(?<command_line>#{ command }\s?#{ _anything_but_these })$/, # [5] single word
+  nil, nil, nil,
   /^(?<command_line>#{ command })\s*#{ _store }$/,                           # [5] single word
   nil, nil, nil, nil,
   /^(?<command_line>#{ command }\s+#{ _anything_but_these })#{ _store }$/,   # [10] command + space
+  nil, nil, nil, nil,
 ]
 
 # J-_-L

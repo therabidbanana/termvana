@@ -1,6 +1,8 @@
 == 0.2.0
 * Daemon support via pidly
 * Basic Fresh integration
+* Left hand assignment via := (because ls => foo feels like a weird way to
+assign foo)
 _ Served as rack app instead of via file:// urls
 _ Initial cucumber testing
 
