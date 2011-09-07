@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'termvana/websocket'
+
+@daemon = Termvana::Websocket.spawn(
+  :name => 'termvana',
+  :path => '/tmp',
+  :verbose => true
+)
+
+if ARGV.size == 0 && @daemon.running?
+  @daemon.status
+elsif ARGV.size == 0
+  @daemon.start
+else
+  @daemon.send ARGV.first
+end
