@@ -3,9 +3,10 @@
 require 'termvana/websocket'
 
 @daemon = Termvana::Websocket.spawn(
-  :name => 'termvana',
+  :name => 'termvana-websocket',
   :path => '/tmp',
-  :verbose => true
+  :verbose => true,
+  :logger => false
 )
 
 if ARGV.size == 0 && @daemon.running?

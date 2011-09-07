@@ -1,3 +1,9 @@
+== 0.2.0
+* Daemon support via pidly
+* Basic Fresh integration
+_ Served as rack app instead of via file:// urls
+_ Initial cucumber testing
+
 == 0.1.1
 * Add commandline options via a Runner
 * Fix to work with hirb

@@ -1,11 +1,15 @@
 == Description
-A ruby web shell that has autocompletion and readline behavior. It uses
+A web-based shell that has autocompletion and readline behavior. It uses
 websockets, repl.js, readline.js and ripl for the shell engine.
+
+Goal is to have a fully usable shell for 80% of daily tasks, but with an awesome and hackable
+UI built in HTML/CSS/jQuery - eventually this goal may require a specialized browser, Termkit style,
+but initially I hope to get most functionality without taking that step.
 
 == Install
 Install the gem with:
 
-    sudo gem install nirvana
+    gem install nirvana
 
 == Usage
 
@@ -13,44 +17,29 @@ Your browser must have html5 websockets support.
 
 To use, start a websocket server and open termvana in a tab
 
-    # On a mac
     $ termvana
 
-If you close the tab, the path to nirvana's html page is (for reopening)
-
-    $ echo $(dirname $(gem which nirvana))/nirvana/public/index.html
+If you close the tab just call termvana again. 
 
 To see what options nirvana takes (mostly options like ripl):
 
-    $ nirvana -h
-
-Once you're in the nirvana web shell, autocompletion should work better than irb's (argument
-autocompletion):
-
-    >> Bo[TAB]
-    >> Bond
-    >> Bond.const[TAB]
-       Bond.const_defined?
-       Bond.const_get
-       Bond.const_missing
-       Bond.const_set
-       Bond.constants
-    >> Bond.const_g[TAB]
-    >> Bond.const_get :Ag[TAB]
-    >> Bond.const_get :Agent
+    $ termvana -h
 
 Also notice that a subset of readline's functionality is available.  Try C-l, C-r or C-p and they
 should do what readline normally does. For more keybindings, see
 {readline.js}[http://github.com/cldwalker/readline.js].
 
 == Customize
-Since nirvana uses ripl under the hood, most shell behavior is customizable with ripl plugins which
+Since termvana uses ripl under the hood, shell behavior is customizable with ripl plugins which
 get loaded from ~/.riplrc. See {ripl}[http://github.com/cldwalker/ripl] for more.
 
+Due to the specialized way termvana works, this may have limited support.
+
+Termvana is the integration of nirvana and fresh into a single gem, with more UI enhancements.
+
 == Links
-* {ripl}[http://github.com/cldwalker/ripl]
-* {readline.js}[http://github.com/cldwalker/readline.js]
-* {repl.js}[http://github.com/cldwalker/repl.js]
+* {nirvana}[http://github.com/cldwalker/nirvana]
+* {fresh}[https://github.com/janlelis/fresh]
 
 == Bugs/Issues
 Please report them {on github}[http://github.com/cldwalker/nirvana/issues]. For javascript issues,
@@ -58,10 +47,13 @@ report them on {readline.js}[http://github.com/cldwalker/readline.js/issues] or
 {repl.js}[http://github.com/cldwalker/repl.js/issues] as appropriate.
 
 == Credits
-* {rkh's brirb}[http://github.com/rkh/brirb]: Original prototype which inspired this project
+* {rkh's brirb}[http://github.com/rkh/brirb]: Original prototype which inspired nirvana
+* {cldwalker's nirvana}[http://github.com/cldwalker/nirvana]: Project this was forked from
+* {janlelis's fresh}[https://github.com/janlelis/fresh]
+* {unconed's TermKit}[https://github.com/unconed/TermKit]
 
 == License
-nirvana is MIT licensed. nirvana comes bundled with other libraries which have the following
+termvana is MIT licensed. termvana comes bundled with other libraries which have the following
 licenses: jquery (GPL2 and MIT), jquery.hotkeys plugin (no license), repl.js jquery plugin (MIT) and
 readline.js jquery plugin (MIT).
 

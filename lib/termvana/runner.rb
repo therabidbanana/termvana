@@ -4,11 +4,15 @@ module Termvana
     EXIT_OPTIONS = %w{-h --help -v --version}
 
     def self.run_command(argv)
-      begin
-        cmd = argv.shift
-        require "ripl/#{cmd}"
-      rescue LoadError
-        abort "`#{cmd}' is not a termvana command."
+      if Websocket.respond_to?(argv.first)
+        argv.shift 
+      else
+        begin
+          cmd = argv.shift
+          require "ripl/#{cmd}"
+        rescue LoadError
+          abort "`#{cmd}' is not a termvana command."
+        end
       end
       start
     end
@@ -17,8 +21,9 @@ module Termvana
       @argv = options[:argv]
       parse_options @argv.dup
       stdout, stderr = Util.capture_all {
-        load_rc(Ripl.config[:riplrc]) unless @argv.include? '-F'
+        # load_rc(Ripl.config[:riplrc]) unless @argv.include? '-F'
         Ripl::Shell.include Termvana::Shell
+        # Ripl::Shell.include Ripl::Fresh
         (Ripl.config[:hirb] ||= {})[:pager] = false if defined? Hirb
         Ripl.shell(:name=>'nirvana', :readline=>false).before_loop
       }
