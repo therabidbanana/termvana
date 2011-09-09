@@ -9,12 +9,7 @@ module Termvana
     def on_start
       EventMachine.run do
         EventMachine::WebSocket.start(:host => '127.0.0.1', :port => 8080) do |ws|
-          ws.onopen {
-            result = Termvana::Runner.run ARGV
-            ws.send(result) unless result.to_s.empty?
-          }
-          ws.onmessage {|msg| ws.send Ripl.shell.web_loop_once(msg) }
-          ws.onclose { Ripl.shell.after_loop }
+          
         end
       end
     rescue

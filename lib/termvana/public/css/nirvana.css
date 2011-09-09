@@ -1,5 +1,5 @@
 body .nirvana_exception {
-  color: red;
+  color: #fdd;
   display: block;
   width: 95%;
   margin: 0.3em auto;
@@ -7,9 +7,57 @@ body .nirvana_exception {
   overflow: auto;
   border-radius: 0.5em;
   font-size: smaller;
-  background: #ddd;
+  background: #777;
+  font-family: "BitStream Vera Sans Mono", "Lucida Console", monospace;
+  font-size: inherit;
+  font-size: 105.5%;
   padding: 0.8em;
 }
 body .nirvana_warning {
   color: #ffcc00;
+}
+
+html {
+  height: 100%;
+}
+body {
+  background: #000;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.termkitCommandView {
+  font-family: "BitStream Vera Sans", "Lucida Grande", "Helvetica", Arial, sans-serif;
+  font-size: 70%;
+  padding: 1em;
+}
+
+#terminal {
+  background: #000;
+  min-height: 100%;
+}
+
+.nirvana_exception::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.nirvana_exception::-webkit-scrollbar-track-piece:horizontal {
+  width: 30px;
+}
+.nirvana_exception::-webkit-scrollbar-track {
+}
+.nirvana_exception::-webkit-scrollbar-thumb {
+  background: #333 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#444), to(#333));
+  border-radius: 8px;
+}
+.nirvana_exception::-webkit-scrollbar-thumb:window-inactive {
+  background: #333 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666), to(#555));
+  border-radius: 8px;
+}
+
+.repl_input{
+  background: transparent;
+  color: white;
 }

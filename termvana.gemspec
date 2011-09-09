@@ -20,6 +20,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'escape_utils', '>= 0.1.8'
   s.add_dependency 'json_pure', '>= 1.4.3'
   s.add_dependency 'em-websocket', '>= 0.1.4'
+  s.add_dependency 'cramp'
+  s.add_dependency 'thin'
+  s.add_dependency 'bundler'
+  s.add_dependency 'http_router'
+  s.add_dependency 'async-rack'
   s.files = Dir.glob(%w[{lib,test}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} **/deps.rip]) + %w{Rakefile termvana.gemspec}
   s.files += Dir.glob('lib/**/*.{css,html,js,gif}')
   s.extra_rdoc_files = ["README.rdoc", "LICENSE.txt"]
