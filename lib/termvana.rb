@@ -27,7 +27,7 @@ module Termvana
       # )
       filename = File.expand_path(File.dirname(__FILE__) + '/termvana/config.ru')
       puts "Opening up tervana..."
-      Thin::Runner.new("--max-persistent-conns 1024 --timeout 0 -V -R #{filename} start".split).run!
+      Thin::Runner.new("--max-persistent-conns 1024 --timeout 0 -R #{filename} start".split).run!
       # RUBY_PLATFORM[/darwin/i]  ? system('open', html_file) : puts(html_file)
     end
   end

@@ -8,7 +8,7 @@ if Termvana::Application.env == 'development'
   use Rack::Reloader, 0
 
   # Serve assets from /public
-  use Rack::Static, :urls => ["/css", "/images", "/js", "/index.html"], :root => Termvana::Application.root(:public)
+  use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
 end
 
 # Running thin :

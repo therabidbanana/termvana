@@ -1,6 +1,6 @@
 class HomeAction < Cramp::Action
   def start
-    render "Hello World!"
+    render File.read(File.join(Termvana::Application.root(:public), 'index.html'))
     finish
   end
 end
