@@ -13,11 +13,11 @@ module Termvana
     end
 
     def self.env
-      @_env ||= ENV['RACK_ENV'] || 'development'
+      @_env ||= (ENV['RACK_ENV'] || 'development')
     end
 
     def self.routes
-      @_routes ||= eval(File.read("#{@_root}/config/routes.rb"))
+      @_routes ||= eval(File.read("#{root}/config/routes.rb"))
     end
 
     # Initialize the application

@@ -27,6 +27,7 @@ task :gemspec do
   gemspec.validate
 end
 
+
 desc 'Run tests'
 task :test do |t|
   sh 'bacon -q -Ilib -I. test/*_test.rb'

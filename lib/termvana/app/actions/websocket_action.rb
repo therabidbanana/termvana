@@ -26,7 +26,8 @@ class WebsocketAction < Cramp::Websocket
   end
 
   def closed_conn
-    Ripl.shell.after_loop
+    # Ripl.shell.after_loop
+    STDERR.puts "Browser disconnecting."
   end
 
 end

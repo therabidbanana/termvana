@@ -1,15 +1,2 @@
 == 0.2.0
-* Daemon support via pidly
-* Basic Fresh integration
-* Left hand assignment via := (because ls => foo feels like a weird way to
-assign foo)
-_ Served as rack app instead of via file:// urls
-_ Initial cucumber testing
-_ Don't die on long running programs
-
-== 0.1.1
-* Add commandline options via a Runner
-* Fix to work with hirb
-
-== 0.1.0
-* Finally, a release
+* Tear out all ripl/fresh stuff, rebuild in Eventmachine

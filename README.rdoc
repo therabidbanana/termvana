@@ -1,6 +1,6 @@
 == Description
 A web-based shell that has autocompletion and readline behavior. It uses
-websockets, repl.js, readline.js and ripl for the shell engine.
+websockets, repl.js, readline.js.
 
 Goal is to have a fully usable shell for 80% of daily tasks, but with an awesome and hackable
 UI built in HTML/CSS/jQuery - eventually this goal may require a specialized browser, Termkit style,
@@ -9,37 +9,22 @@ but initially I hope to get most functionality without taking that step.
 == Install
 Install the gem with:
 
-    gem install nirvana
+    gem install termvana
 
 == Usage
 
 Your browser must have html5 websockets support.
 
-To use, start a websocket server and open termvana in a tab
+To start the server
 
     $ termvana
 
-If you close the tab just call termvana again. 
-
-To see what options nirvana takes (mostly options like ripl):
-
-    $ termvana -h
+Termvana will be available on port 5432
 
 Also notice that a subset of readline's functionality is available.  Try C-l, C-r or C-p and they
 should do what readline normally does. For more keybindings, see
 {readline.js}[http://github.com/cldwalker/readline.js].
 
-== Customize
-Since termvana uses ripl under the hood, shell behavior is customizable with ripl plugins which
-get loaded from ~/.riplrc. See {ripl}[http://github.com/cldwalker/ripl] for more.
-
-Due to the specialized way termvana works, this may have limited support.
-
-Termvana is the integration of nirvana and fresh into a single gem, with more UI enhancements.
-
-== Links
-* {nirvana}[http://github.com/cldwalker/nirvana]
-* {fresh}[https://github.com/janlelis/fresh]
 
 == Bugs/Issues
 Please report them {on github}[http://github.com/cldwalker/nirvana/issues]. For javascript issues,
@@ -48,7 +33,7 @@ report them on {readline.js}[http://github.com/cldwalker/readline.js/issues] or
 
 == Credits
 * {rkh's brirb}[http://github.com/rkh/brirb]: Original prototype which inspired nirvana
-* {cldwalker's nirvana}[http://github.com/cldwalker/nirvana]: Project this was forked from
+* {cldwalker's nirvana}[http://github.com/cldwalker/nirvana]: Initial project inspiration, JS libs.
 * {janlelis's fresh}[https://github.com/janlelis/fresh]
 * {unconed's TermKit}[https://github.com/unconed/TermKit]
 
@@ -59,9 +44,3 @@ readline.js jquery plugin (MIT).
 
 == Todo
 * Tests
-* Easier way to reopen an existing session
-* Load ~/.irb_history into readline.js
-* Customizable html and js
-* Use text area for multi-line input
-* See readline.js and repl.js todos for javascript todos
-* Possible plugins for sinatra and em-websocket-server

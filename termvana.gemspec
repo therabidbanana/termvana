@@ -13,13 +13,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   # s.rubyforge_project = 'tagaholic'
   s.require_paths = ['lib']
-  s.executables  = ['termvana', 'termvana-websocket']
-  s.add_dependency 'ripl', '>= 0.3.0'
-  s.add_dependency 'pidly', '~> 0.1.3'
-  s.add_dependency 'launchy', '~> 2.0.5'
-  s.add_dependency 'escape_utils', '>= 0.1.8'
-  s.add_dependency 'json_pure', '>= 1.4.3'
-  s.add_dependency 'em-websocket', '>= 0.1.4'
+  s.executables  = ['termvana']
   s.add_dependency 'cramp'
   s.add_dependency 'thin'
   s.add_dependency 'bundler'

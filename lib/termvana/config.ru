@@ -4,6 +4,7 @@ Termvana::Application.initialize!
 if Termvana::Application.env == 'development'
   use AsyncRack::CommonLogger
 
+
   # Enable code reloading on every request
   use Rack::Reloader, 0
 
@@ -11,7 +12,13 @@ if Termvana::Application.env == 'development'
   use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
 end
 
+if Termvana::Application.env == 'test'
+  # use AsyncRack::CommonLogger
+  # Serve assets from /public
+  use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
+end
 # Running thin :
+#
 #
 #   bundle exec thin --max-persistent-conns 1024 --timeout 0 -R config.ru start
 #
