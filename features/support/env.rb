@@ -10,12 +10,12 @@ require 'capybara/cucumber'
 require 'rspec'
 
 Capybara.default_host = "http://127.0.0.1"
-Capybara.server_port = 5432
-Capybara.app_host = "http://127.0.0.1:5432"
+Capybara.server_port = 6543
+Capybara.app_host = "#{Capybara.default_host}:#{Capybara.server_port}"
 Thread.new {
   puts "Running server"
   Thin::Logging.silent = true
-  Termvana.start
+  Termvana.start(Capybara.server_port)
   puts "server is running"
 }
 Capybara.run_server = false
