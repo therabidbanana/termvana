@@ -9,11 +9,13 @@ PATH
   remote: .
   specs:
     termvana (0.2.0)
+      activesupport
       async-rack
       bundler
       cramp
       http_router
       thin
+      virtus
 
 GEM
   remote: http://rubygems.org/
@@ -44,7 +46,7 @@ GEM
       term-ansicolor (>= 1.0.6)
     daemons (1.1.4)
     diff-lcs (1.1.3)
-    eventmachine (1.0.0.beta.3)
+    eventmachine (1.0.0.beta.4)
     ffi (1.0.9)
     gherkin (2.4.18)
       json (>= 1.4.6)
@@ -80,6 +82,7 @@ GEM
     thor (0.14.6)
     url_mount (0.2.1)
       rack
+    virtus (0.0.8)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 

@@ -6,12 +6,21 @@ module NavigationHelpers
   #   When /^I go to (.+)$/ do |page_name|
   #
   # step definition in web_steps.rb
+  def examples_path
+    File.expand_path(File.join(File.dirname(__FILE__), '..', 'examples'))
+  end
+  # Maps a name to a path. Used by the
   #
+  #   When /^I go to (.+)$/ do |page_name|
+  #
+  # step definition in web_steps.rb
   def path_to(page_name)
     case page_name
 
     when /the home\s?page/
       '/'
+    when /(?:the )?examples directory/
+      examples_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

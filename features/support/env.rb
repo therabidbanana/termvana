@@ -19,10 +19,14 @@ Thread.new {
   puts "server is running"
 }
 Capybara.run_server = false
-sleep 2
+
+# Waiting for server to boot - if we don't let capybara run server,
+# we have to manually wait.
+sleep 5
 Capybara.app = Termvana
 
-Capybara.javascript_driver = :webkit
+Capybara.default_driver = :selenium
+Capybara.javascript_driver = :selenium
 
 class MyAppWorld
   include Capybara::DSL

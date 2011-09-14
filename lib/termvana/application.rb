@@ -3,6 +3,8 @@ require 'thin'
 require 'bundler'
 require 'http_router'
 require 'async-rack'
+require 'virtus'
+require 'active_support/json'
 
 module Termvana
   class Application

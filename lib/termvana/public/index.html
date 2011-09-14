@@ -21,7 +21,7 @@
             spinner: 'images/spinner.gif',
             loop: function(val) {
               $.readline.addHistory(val);
-              $.ws().send(val);
+              $.ws().send(JSON.stringify({full_command: val}));
             }
             });
         $(window).click(function(){ $('#input').focus(); });
