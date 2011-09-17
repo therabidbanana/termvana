@@ -1,0 +1,84 @@
+body{
+  background: url(./images/pattern.png);
+  font-family: 'Droid Sans', sans-serif;
+  color: white;
+}
+
+.container{
+  width: 90%;
+  margin: 1em auto;
+}
+
+hgroup{
+  margin: 3em 1.5em;
+}
+
+h1{
+  font-size: 2em;
+  text-shadow: -1px -1px 0px rgba(0,0,0,0.5);
+  margin-bottom: 0.3em;
+}
+h2{
+  font-size: 1.2em;
+  margin-top: 0.2em;
+  text-shadow: -1px -1px 0px rgba(0,0,0,0.5);
+}
+dl{
+  color: #a8a;
+  font-size: 1.5em;
+  background: url(./images/dark_pattern.png);
+  padding-bottom: 1.5em;
+  margin-bottom: 0;
+  padding-top: 0.8em;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-topright: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  webkit-box-shadow: -1px -1px 5px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: -1px -1px 5px 0px rgba(0, 0, 0, 1);
+  box-shadow: -1px -1px 5px 0px rgba(0, 0, 0, 1);
+  text-shadow: -1px -1px 0px rgba(240,200,240,0.4);
+  
+  
+}
+dl:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+
+dd{
+  float: right;
+  padding-top: 1.5em;
+  text-align: left;
+  margin-right: 1em;
+}
+dt{
+  font-size: 2em;
+  margin-top: 0.4em;
+  float: right;
+  width: 80%;
+  clear: both;
+}
+em{
+  color: #646;
+  font-size: 0.6em;
+}
+
+iframe{
+  width: 100%;
+  min-height: 300px;
+  border: 0;
+  clear: both;
+  margin: 0;
+}
+
+article{
+  width: 90%;
+  margin: 1em auto;
+}
