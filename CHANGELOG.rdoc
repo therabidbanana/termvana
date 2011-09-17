@@ -1,2 +1,7 @@
 == 0.2.0
 * Tear out all ripl/fresh stuff, rebuild in Eventmachine
+* Basic cucumber support
+* Nifty iframe demo
+_ build simple site
+_ fix timeout error when you run a long command and then other commands
+_ more specs for CD - home dir, expanded paths, CDPATH, multiple terminals

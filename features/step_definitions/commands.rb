@@ -11,3 +11,17 @@ Then /^I should get (.+) path$/ do |arg1|
   page.all('.command').last.should have_content(path_to(arg1))
 end
 
+Then /^I should get (.+) path with "([^"]*)" appended$/ do |arg1, arg2|
+  page.all('.command').last.should have_content(File.join(path_to(arg1), arg2))
+end
+
+Given /^I start my server with environment:$/ do |table|
+  table.hashes.each do |hash|
+    Given "I run \"set #{hash['variable']}=#{hash['value']}\""
+  end
+end
+
+Then /^I should get "([^"]*)"$/ do |arg1|
+  page.all('.command').last.should have_content(arg1)
+end
+

@@ -1,6 +1,6 @@
 Cramp::Websocket.backend = :thin
 
-class WebsocketAction < Cramp::Websocket
+class Termvana::WebsocketAction < Cramp::Websocket
   self.transport = :websocket
 
   on_data :received_data
@@ -10,38 +10,19 @@ class WebsocketAction < Cramp::Websocket
   attr_accessor :environment
 
   def opened_conn
-    @environment = Environment.new
+    @environment = Termvana::Environment.new(:env => {"HOME" => ENV['HOME']})
     @environment.messenger do |message|
       render message.to_s
     end
-    render Response.new(:message => "Welcome to Nirvana. Websocket connected.", :type => :on_connect).to_s
+    render Termvana::Response.new(:message => "Welcome to Nirvana. Websocket connected.", :type => :on_connect).to_s
     # resulvt = Termvana::Runner.run ARGV
     # send(result) unless result.to_s.empty?
   end
 
   def received_data(data)
-    command = Command.new(data)
-    if command.full_command =~ /^cd (.+)/
-      environment.cwd = $1 
-      response = Response.new(:message => "")
-      render response.to_s
-    else
-      # Change this - leaves open shells lying around.
-      process =  EM.popen("bash", CommandProcessor, environment, command) do |c|
-        c.prepare_and_run
-      end
-      # Allow timeout - mixin EventMachine::Deferrable
-      process.callback do |data|
-        response = Response.new(:message => data)
-        render response.to_s
-      end
-      process.errback do |data|
-        render Response.new(:message => "Command timed out.", :type => :error).to_s
-      end
-      process.timeout(10)
-    end
-    # Ripl.shell.web_loop_once(data)
-      #
+    command = Termvana::Request.new(data)
+    callable = Termvana::CommandProcessor.parse(environment, command)
+    callable.call
   end
 
   def closed_conn

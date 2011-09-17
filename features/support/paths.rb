@@ -22,6 +22,8 @@ module NavigationHelpers
     when /(?:the )?examples directory/
       examples_path
 
+    when /(?:my )?home/
+      ENV['HOME']
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

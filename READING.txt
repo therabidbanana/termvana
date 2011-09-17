@@ -1,0 +1,7 @@
+Usefult bits I've seen while figuring out stuff:
+
+http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html#tag_02_09_01_01
+
+http://pubs.opengroup.org/onlinepubs/009695399/utilities/cd.html
+
+https://gist.github.com/535644

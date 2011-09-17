@@ -30,5 +30,7 @@ module Termvana
 end
 
 # Preload application classes
+Dir["#{File.expand_path(File.dirname(__FILE__))}/app/models/*.rb"].each {|f| require f}
+Dir["#{File.expand_path(File.dirname(__FILE__))}/app/command_processor.rb"].each {|f| require f}
 Dir["#{File.expand_path(File.dirname(__FILE__))}/app/**/*.rb"].each {|f| require f}
 
