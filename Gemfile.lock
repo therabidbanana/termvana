@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    termvana (0.2.0.beta2)
+    termvana (0.2.0.beta3)
       activesupport
       async-rack
       bundler
