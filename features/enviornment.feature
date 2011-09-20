@@ -10,3 +10,7 @@ Feature: Environment
     When I run "cd"
     And I run "pwd"
     Then I should get "/tmp"
+
+  Scenario: Current working directory should show
+    When I run "cd /tmp"
+    Then my working directory should be "/tmp"

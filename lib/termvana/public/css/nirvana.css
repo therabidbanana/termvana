@@ -18,7 +18,8 @@ body .nirvana_warning {
 }
 
 html {
-  height: 100%;
+  background-color: transparent;
+  
 }
 body {
   background: #000;
@@ -26,17 +27,70 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
+  overflow-y: hidden;
+  
 }
+::-webkit-scrollbar {
+width: 10px;
+height: 10px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment  {
+height: 30px;
+display: block;
+background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece  {
+background-color: #3b3b3b;
+-webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+height: 50px;
+background-color: #666;
+border: 1px solid #eee;
+-webkit-border-radius: 6px;
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
+  height: 30px;
+  font-size: smaller;
+  font-family: "BitStream Vera Sans Mono", "Lucida Console", monospace;
+  width: 100%;
+  background-color: #336699;  
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(10, 20, 60, 0.7));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(10, 20, 60, 0.7));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0)), color-stop(1, rgba(10, 20, 60, 0.7)));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(10, 20, 60, 0.7));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(10, 20, 60, 0.7));
+}
+
+footer div{
+  margin: 6px 8px;
+}
+
 
 .termkitCommandView {
   font-family: "BitStream Vera Sans", "Lucida Grande", "Helvetica", Arial, sans-serif;
   font-size: 70%;
-  padding: 1em;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #terminal {
   background: #000;
-  min-height: 100%;
+  padding: 1em;
+  padding-bottom: 50px;
 }
 
 .nirvana_exception::-webkit-scrollbar {

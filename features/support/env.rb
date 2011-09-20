@@ -27,6 +27,7 @@ Capybara.app = Termvana
 
 Capybara.default_driver = :selenium
 Capybara.javascript_driver = :selenium
+Capybara.default_wait_time = 8
 
 class MyAppWorld
   include Capybara::DSL

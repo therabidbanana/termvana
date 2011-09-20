@@ -12,14 +12,20 @@ module Termvana
       end
     end
 
-    def respond_with(opts = {})
-      if opts == :null
-        environment.send_message Termvana::Response.new
+    def respond_with(*args)
+      opts = args.extract_options!
+      opts[:message] ||= args.shift if args.first.is_a? String
+      
+      if args.first == :null
+        opts = {}
       elsif data = opts.delete(:text)
-        environment.send_message Termvana::Response.new(:message => data)
+        opts[:message] ||= data
       elsif data = opts.delete(:error)
-        environment.send_message Termvana::Response.new(:message => data, :type => :error)
+        opts[:message] ||= data
+        opts[:type] = :error
       end
+      opts[:type] ||= self.class.response
+      environment.send_message Termvana::Response.new(opts)
     end
 
 

@@ -11,6 +11,10 @@ class Termvana::WebsocketAction < Cramp::Websocket
 
   def opened_conn
     @environment = Termvana::Environment.new(:env => {"HOME" => ENV['HOME']})
+    # Setup
+    Dir.chdir(@environment.fullpath(@environment.cwd))
+    @environment.env["PWD"] = @environment.cwd = Dir.pwd
+    
     @environment.messenger do |message|
       render message.to_s
     end

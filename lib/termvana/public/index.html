@@ -24,13 +24,19 @@
               $.ws().send(JSON.stringify({full_command: val}));
             }
             });
+
         $(window).click(function(){ $('#input').focus(); });
       });
     </script>
   </head>
-  <body class="termkitCommandView">
-    <form id="terminal">
-      <input id='input' type='text'>
-    </form>
+  <body>
+    <section class="termkitCommandView">
+      <form id="terminal">
+        <input id='input' type='text'>
+      </form>
+    </section>
+    <footer>
+      <div id="current_working_dir"></div>
+    </footer>
   </body>
 </html>
