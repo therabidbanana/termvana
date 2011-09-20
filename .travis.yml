@@ -1,3 +1,2 @@
 rvm: 1.9.2
-before_script: "bundle install"
 script: "bundle exec cucumber"
