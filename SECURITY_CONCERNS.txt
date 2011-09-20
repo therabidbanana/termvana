@@ -1,0 +1,2 @@
+* Executes arbitrary commands sent over a port (default 5432). This port should definitely be made inaccessible from outside computers by firewall settings. Maybe able to fix this in future by authenticating source of connection. 
+* Javascript injection - Chrome plugins able to access any page could possibly run arbitrary commands if they found you were running termvana - could solve by only allowing a specialized browser to access the server?
