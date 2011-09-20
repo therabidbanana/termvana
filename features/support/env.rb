@@ -14,15 +14,14 @@ Capybara.server_port = 6543
 Capybara.app_host = "#{Capybara.default_host}:#{Capybara.server_port}"
 Thread.new {
   puts "Running server"
-  Thin::Logging.silent = true
+  # Thin::Logging.silent = true
   Termvana.start(Capybara.server_port)
-  puts "server is running"
 }
 Capybara.run_server = false
 
 # Waiting for server to boot - if we don't let capybara run server,
 # we have to manually wait.
-sleep 5
+sleep 10
 Capybara.app = Termvana
 
 Capybara.default_driver = :selenium
