@@ -33,4 +33,13 @@ task :test do |t|
   sh 'bacon -q -Ilib -I. test/*_test.rb'
 end
 
+task :travis do
+  ["cucumber"].each do |cmd|
+    puts "Starting to run #{cmd}..."
+    system("export DISPLAY=:99.0 && bundle exec #{cmd}")
+    raise "#{cmd} failed!" unless $?.exitstatus == 0
+  end
+end
+
+
 task :default => :test
