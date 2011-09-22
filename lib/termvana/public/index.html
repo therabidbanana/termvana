@@ -1,24 +1,18 @@
 <html>
   <head>
     <title>termvana</title>
-    <link href='css/jquery.repl.css' rel='stylesheet' type='text/css'>
-    <link href='css/nirvana.css' rel='stylesheet' type='text/css'>
-    <script src='js/jquery.min.js' type='text/javascript'></script>
-    <script src='js/nirvana.js' type='text/javascript'></script>
-    <script src='js/jquery.hotkeys.js' type='text/javascript'></script>
-    <script src="js/jquery.ui.autocomplete.min.js"></script>
-    <script src='js/jquery.readline.js' type='text/javascript'></script>
-    <script src='js/jquery.repl.js' type='text/javascript'></script>
+    <link href='/assets/nirvana.css' rel='stylesheet' type='text/css'>
+    <script src='/assets/nirvana.js' type='text/javascript'></script>
     <script type='text/javascript'>
       $(document).ready( function(){
           $('#input').readline({
-            autocompleteCss: 'css/jquery.ui.autocomplete.css',
-            readlineCss: 'css/jquery.readline.css',
+            autocompleteCss: '',
+            readlineCss: '',
             startCompletion: $.ws.nirvanaComplete
           }).repl({
             resultPrompt: '',
             startMessage: function() { return '$ termvana' },
-            spinner: 'images/spinner.gif',
+            spinner: '/assets/spinner.gif',
             loop: function(val) {
               $.readline.addHistory(val);
               $.ws().send(JSON.stringify({full_command: val}));

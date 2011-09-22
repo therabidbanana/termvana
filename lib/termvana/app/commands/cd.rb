@@ -5,7 +5,11 @@ module Termvana
     name "cd"
     def call
       dir = request[1] || "~"
-      Dir.chdir(environment.fullpath(dir))
+      begin
+        Dir.chdir(environment.fullpath(dir))
+      rescue
+        respond_with(:error => "No such directory.")
+      end
       environment.env["PWD"] = environment.cwd = Dir.pwd
       # Send system env update to JS
       respond_with(:data => {:environment => environment}, :type => :system)

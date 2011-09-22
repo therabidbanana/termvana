@@ -4,5 +4,12 @@
 * Nifty iframe demo
 * build simple site
 _ fix timeout error when you run a long command and then other commands
-* more specs for CD - home dir, expanded paths, CDPATH, multiple terminals
-_ show home dir
+* more specs for CD - home dir, expanded paths, CDPATH, multiple
+terminals
+_ catch errors and send to terminal
+* show home dir
+_ basic PATH support
+_ CDPATH support
+_ backbone.js tying command requests to responses
+_ rvm ?
+

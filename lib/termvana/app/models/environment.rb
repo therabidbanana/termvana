@@ -16,7 +16,10 @@ module Termvana
       env['HOME']
     end
     def setup
-      Dir.chdir(fullpath(cwd))
+      begin
+        Dir.chdir(fullpath(cwd))
+      rescue
+      end
     end
     def envs
       my_envs = env.map do |k, v|

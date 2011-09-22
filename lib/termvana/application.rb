@@ -4,7 +4,10 @@ require 'bundler'
 require 'http_router'
 require 'async-rack'
 require 'virtus'
+require 'sprockets'
 require 'active_support/json'
+require "#{File.expand_path(File.dirname(__FILE__))}/command_set"
+require "#{File.expand_path(File.dirname(__FILE__))}/sprockets_helpers"
 
 module Termvana
   class Application
@@ -18,16 +21,62 @@ module Termvana
       @_env ||= (ENV['RACK_ENV'] || 'development')
     end
 
+    def self.assets
+      @_assets ||= Sprockets::Environment.new(root) 
+    end
+
     def self.routes
       @_routes ||= eval(File.read("#{root}/config/routes.rb"))
     end
 
+    def self.command_sets
+      @_command_sets ||= []
+    end
+
+    def self.command_sets=(set)
+      @_command_sets = set
+    end
+
     # Initialize the application
     def self.initialize!
+      assets.prepend_path(File.join(root, 'assets'))
+      self.command_sets = Termvana::CommandSet.subclasses.map(&:new)
+      self.command_sets.each do |set|
+        set.add_asset_paths_to(assets)
+      end
+      prefs = File.join(ENV['HOME'], '.termvana')
+      assets.prepend_path(prefs) if File.exist?(prefs)
+      assets.context_class.instance_eval do
+        include Termvana::SprocketsHelpers
+      end
     end
 
   end
 end
+
+
+module EventMachine
+  def self.popen3(*args)
+    new_stderr = $stderr.dup
+    rd, wr = IO::pipe
+    $stderr.reopen wr
+    connection = EM.popen(*args)
+    $stderr.reopen new_stderr
+    EM.attach rd, Popen3StderrHandler, connection
+    connection
+  end
+  
+  class Popen3StderrHandler < EventMachine::Connection
+    def initialize(connection)
+      @connection = connection
+    end
+    
+    def receive_data(data)
+      @connection.receive_stderr(data)
+    end
+  end  
+end
+
 
 # Preload application classes
 Dir["#{File.expand_path(File.dirname(__FILE__))}/app/models/*.rb"].each {|f| require f}

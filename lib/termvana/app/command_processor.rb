@@ -17,7 +17,7 @@ module Termvana
       else
         # Simple case - popen and set a timeout
         lambda do 
-          process = EM.popen(environment.runnable(request), self, environment)
+          process = EM.popen3(environment.runnable(request), self, environment)
           process.callback do |data|
             environment.send_message Termvana::Response.new(:message => data)
           end
@@ -47,6 +47,11 @@ module Termvana
 
     def receive_data data
       environment.send_message(Response.new(:message => data))
+    end
+
+    def receive_stderr data
+      data.gsub!(/^env:\s+/, '')
+      environment.send_message(Response.new(:message => data, :type => :error))
     end
 
     def unbind

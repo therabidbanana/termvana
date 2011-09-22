@@ -1,5 +1,6 @@
 require 'termvana/version'
 require 'termvana/application'
+require 'termvana-defaults'
 
 require 'thin'
 

@@ -39,6 +39,17 @@ Feature: CD
     When I run "pwd"
     Then I should get my home path
 
+  Scenario: Non-existent directory
+    Given I am on the home page
+    Given I run "cd fdjsaklfd;ajsfd"
+    Then I should get an error saying "No such directory"
+
+
+
+
+
+
+
 
 
 

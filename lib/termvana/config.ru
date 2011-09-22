@@ -1,5 +1,6 @@
-Termvana::Application.initialize!
+require 'termvana-defaults'
 
+Termvana::Application.initialize!
 # Development middlewares
 if Termvana::Application.env == 'development'
   use AsyncRack::CommonLogger
@@ -9,14 +10,15 @@ if Termvana::Application.env == 'development'
   use Rack::Reloader, 0
 
   # Serve assets from /public
-  use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
+  # use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
 end
 
 if Termvana::Application.env == 'test'
   # use AsyncRack::CommonLogger
   # Serve assets from /public
-  use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
+  # use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
 end
+
 # Running thin :
 #
 #
@@ -28,4 +30,13 @@ end
 #
 #   bundle exec thin --max-persistent-conns 1024 --timeout 0 -V -R config.ru start
 #
-run Termvana::Application.routes
+map("/assets") do
+  run Termvana::Application.assets
+end
+
+map("/") do
+  run Termvana::Application.routes
+end
+
+
+

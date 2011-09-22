@@ -21,7 +21,4 @@ Given /^I start my server with environment:$/ do |table|
   end
 end
 
-Then /^I should get "([^"]*)"$/ do |arg1|
-  page.all('.command').last.should have_content(arg1)
-end
 

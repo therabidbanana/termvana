@@ -1,3 +1,9 @@
+//= require_tree ./javascripts/libs
+//= require_tree ./javascripts/plugins
+//= <% autoload_plugins('js') %>
+//= require prefs/termvana
+
+
 (function($) {
   if (!window.WebSocket && !window.MozWebSocket) { 
     alert("This browser does NOT support websockets and thus termvana fail :("); 
@@ -18,6 +24,9 @@
       if(data.type == "system"){
         if(data['data'] && data['data']['environment'])
           $('#current_working_dir').text(data.data.environment.cwd);
+      }
+      else if(data.type == "error"){
+        $.repl.log("<div class='nirvana_exception error'>"+data.message+"</div>");
       }
       else{
         $.repl.logResult(data.message);
