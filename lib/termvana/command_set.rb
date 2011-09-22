@@ -16,10 +16,20 @@ module Termvana
       @_root
     end
 
+    def self.commands(*args)
+      @_commands ||= []
+      @_commands += args
+      @_commands
+    end
+
     def self.autoload_asset(path = nil)
       @_autoload_assets ||= []
       @_autoload_assets << path if path
       @_autoload_assets
+    end
+
+    def commands
+      self.class.commands
     end
 
     def self.autoload_assets

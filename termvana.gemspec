@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.executables  = ['termvana']
   s.add_dependency 'cramp'
   s.add_dependency 'thin'
+  s.add_dependency 'i18n'
   s.add_dependency 'bundler'
   s.add_dependency 'http_router'
   s.add_dependency 'async-rack'

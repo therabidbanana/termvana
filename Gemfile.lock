@@ -7,6 +7,7 @@ PATH
       bundler
       cramp
       http_router
+      i18n
       sprockets
       thin
       virtus
@@ -48,6 +49,7 @@ GEM
     http_router (0.10.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    i18n (0.6.0)
     json (1.6.0)
     json_pure (1.6.0)
     mime-types (1.16)
@@ -72,7 +74,7 @@ GEM
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (~> 1.1, != 1.3.0)
+      tilt (!= 1.3.0, ~> 1.1)
     term-ansicolor (1.0.6)
     thin (1.2.11)
       daemons (>= 1.0.9)

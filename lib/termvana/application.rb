@@ -6,6 +6,7 @@ require 'async-rack'
 require 'virtus'
 require 'sprockets'
 require 'active_support/json'
+require 'active_support/inflector'
 require "#{File.expand_path(File.dirname(__FILE__))}/command_set"
 require "#{File.expand_path(File.dirname(__FILE__))}/sprockets_helpers"
 
@@ -40,11 +41,16 @@ module Termvana
     # Initialize the application
     def self.initialize!
       assets.prepend_path(File.join(root, 'assets'))
+      prefs = File.join(ENV['HOME'], '.termvana')
+      require File.join(prefs, 'initializer.rb') if File.exist?(File.join(prefs, 'initializer.rb'))
+
       self.command_sets = Termvana::CommandSet.subclasses.map(&:new)
       self.command_sets.each do |set|
         set.add_asset_paths_to(assets)
+        set.commands.each do |command|
+          Termvana::CommandProcessor.register(command.classify.constantize)
+        end
       end
-      prefs = File.join(ENV['HOME'], '.termvana')
       assets.prepend_path(prefs) if File.exist?(prefs)
       assets.context_class.instance_eval do
         include Termvana::SprocketsHelpers
