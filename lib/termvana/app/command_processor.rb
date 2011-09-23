@@ -17,22 +17,23 @@ module Termvana
       else
         # Simple case - popen and set a timeout
         lambda do 
-          process = EM.popen3(environment.runnable(request), self, environment)
+          process = EM.popen3(environment.runnable(request), self, environment, request)
           process.callback do |data|
-            environment.send_message Termvana::Response.new(:message => data)
+            environment.send_message(request, Termvana::Response.new(:message => data))
           end
           process.errback do |data|
-            environment.send_message Termvana::Response.new(:message => "Command timed out.", :type => :error)
+            environment.send_message(request, Termvana::Response.new(:message => "Command timed out.", :type => :error))
           end
           process.timeout(10)
         end
       end
     end
 
-    def initialize(environment)
+    def initialize(environment, request)
       @environment = environment
       # @command = command
       environment.setup
+      @request = request
     end
 
     # In the command processor, we are sending/recieving data over an
@@ -46,12 +47,12 @@ module Termvana
 
 
     def receive_data data
-      environment.send_message(Response.new(:message => data))
+      environment.send_message(@request, Response.new(:message => data, :cid => @request.cid))
     end
 
     def receive_stderr data
       data.gsub!(/^env:\s+/, '')
-      environment.send_message(Response.new(:message => data, :type => :error))
+      environment.send_message(@request, Response.new(:message => data, :type => :error, :cid => @request.cid))
     end
 
     def unbind

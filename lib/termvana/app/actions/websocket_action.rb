@@ -10,12 +10,12 @@ class Termvana::WebsocketAction < Cramp::Websocket
   attr_accessor :environment
 
   def opened_conn
-    @environment = Termvana::Environment.new(:env => {"HOME" => ENV['HOME']})
+    @environment = Termvana::Environment.new(:env => Termvana::Application.env)
     # Setup
     Dir.chdir(@environment.fullpath(@environment.cwd))
     @environment.env["PWD"] = @environment.cwd = Dir.pwd
     
-    @environment.messenger do |message|
+    @environment.messenger do |request, message|
       render message.to_s
     end
     render Termvana::Response.new(:message => "Welcome to Nirvana. Websocket connected.", :type => :on_connect).to_s

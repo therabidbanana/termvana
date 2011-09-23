@@ -1,9 +1,10 @@
 module Termvana
   class Command
-    attr_accessor :request, :environment
+    attr_accessor :request, :environment, :cid
     def initialize(environment, request)
       @request = request
       @environment = environment
+      @cid = @request.cid
     end
 
     def finish
@@ -14,6 +15,7 @@ module Termvana
 
     def respond_with(*args)
       opts = args.extract_options!
+      opts[:cid] = @cid
       opts[:message] ||= args.shift if args.first.is_a? String
       
       if args.first == :null
@@ -25,7 +27,7 @@ module Termvana
         opts[:type] = :error
       end
       opts[:type] ||= self.class.response
-      environment.send_message Termvana::Response.new(opts)
+      environment.send_message(request,Termvana::Response.new(opts))
     end
 
 

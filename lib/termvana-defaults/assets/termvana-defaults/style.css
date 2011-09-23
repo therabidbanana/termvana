@@ -112,7 +112,9 @@ footer div{
   border-radius: 8px;
 }
 
-.repl_input{
+.prompt-input{
   background: transparent;
   color: white;
+  border: none;
+  font-size: 1.2em;
 }

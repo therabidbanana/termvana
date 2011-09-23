@@ -5,6 +5,8 @@ require 'http_router'
 require 'async-rack'
 require 'virtus'
 require 'sprockets'
+require "tilt-jade/template"
+require "jade_js/source"
 require 'active_support/json'
 require 'active_support/inflector'
 require "#{File.expand_path(File.dirname(__FILE__))}/command_set"
@@ -18,8 +20,8 @@ module Termvana
       path ? File.join(@_root, path.to_s) : @_root
     end
 
-    def self.env
-      @_env ||= (ENV['RACK_ENV'] || 'development')
+    def self.rack_env
+      @_rack_env ||= (ENV['RACK_ENV'] || 'development')
     end
 
     def self.assets
@@ -34,6 +36,11 @@ module Termvana
       @_command_sets ||= []
     end
 
+    def self.env
+      @_env ||= {'HOME' => ENV['HOME']}
+    end
+
+
     def self.command_sets=(set)
       @_command_sets = set
     end
@@ -41,6 +48,7 @@ module Termvana
     # Initialize the application
     def self.initialize!
       assets.prepend_path(File.join(root, 'assets'))
+      assets.register_engine '.jade', ::TiltJade::Template
       prefs = File.join(ENV['HOME'], '.termvana')
       require File.join(prefs, 'initializer.rb') if File.exist?(File.join(prefs, 'initializer.rb'))
 

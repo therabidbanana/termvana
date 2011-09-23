@@ -2,6 +2,7 @@ module Termvana
   class Request
     include Virtus
     attribute :full_command, String
+    attribute :cid, String
     attribute :type, Symbol, :default => :standard
     def initialize(*args)
       if args.first.is_a? String

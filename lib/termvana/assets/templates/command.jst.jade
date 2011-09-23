@@ -1,0 +1,8 @@
+.command(id="#{command.cid}-command")
+  form.terminal
+    header.prompt
+      span &gt;&gt;
+      input.prompt-input(value=command.get('input'))
+    section.code
+      pre
+        = command.get('results')

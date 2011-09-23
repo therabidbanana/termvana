@@ -1,10 +1,16 @@
+//= require javascripts/libs/jquery.min
 //= require_tree ./javascripts/libs
 //= require_tree ./javascripts/plugins
+//= require_tree ./javascripts/app
 //= <% autoload_plugins('js') %>
 //= require prefs/termvana
+//= require_tree ./templates
 
 
 (function($) {
+
+
+
   if (!window.WebSocket && !window.MozWebSocket) { 
     alert("This browser does NOT support websockets and thus termvana fail :("); 
   }
@@ -26,20 +32,30 @@
           $('#current_working_dir').text(data.data.environment.cwd);
       }
       else if(data.type == "error"){
-        $.repl.log("<div class='nirvana_exception error'>"+data.message+"</div>");
+        
+        mod = App.CommandHistory[data.cid];
+        if(mod)
+          mod.set({results: data.message, type: "error"});
+        // $.repl.log("<div class='nirvana_exception error'>"+data.message+"</div>");
       }
       else{
-        $.repl.logResult(data.message);
+          console.log("Go back data... "+JSON.stringify(data));
+        mod = App.CommandHistory[data.cid];
+        if(mod){
+          mod.set({results: data.message});
+          
+        }
+        // $.repl.logResult(data.message);
       }
     }
   };
   ws.onclose = function() {
-    $.repl.disable();
-    return $.repl.log("<div class='nirvana_exception'>termvana: websocket closed</div>");
+    // $.repl.disable();
+    return // $.repl.log("<div class='nirvana_exception'>termvana: websocket closed</div>");
 
   };
   ws.onerror = function() {
-    return $.repl.log("<div class='nirvana_exception'>termvana: websocket error</div>");
+    return //$.repl.log("<div class='nirvana_exception'>termvana: websocket error</div>");
   };
 
   $.ws = function() { return ws };

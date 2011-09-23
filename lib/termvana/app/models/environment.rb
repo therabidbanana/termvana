@@ -6,8 +6,8 @@ module Termvana
     def messenger
       @messenger = Proc.new
     end
-    def send_message(response)
-      @messenger[response]
+    def send_message(request, response)
+      @messenger[request, response]
     end
     def fullpath(path)
       path.gsub("~", home)

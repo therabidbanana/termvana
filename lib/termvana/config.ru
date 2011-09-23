@@ -2,7 +2,7 @@ require 'termvana-defaults'
 
 Termvana::Application.initialize!
 # Development middlewares
-if Termvana::Application.env == 'development'
+if Termvana::Application.rack_env == 'development'
   use AsyncRack::CommonLogger
 
 
@@ -13,7 +13,7 @@ if Termvana::Application.env == 'development'
   # use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)
 end
 
-if Termvana::Application.env == 'test'
+if Termvana::Application.rack_env == 'test'
   # use AsyncRack::CommonLogger
   # Serve assets from /public
   # use Rack::Static, :urls => ["/css", "/images", "/js"], :root => Termvana::Application.root(:public)

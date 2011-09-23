@@ -9,25 +9,22 @@
             autocompleteCss: '',
             readlineCss: '',
             startCompletion: $.ws.nirvanaComplete
-          }).repl({
-            resultPrompt: '',
-            startMessage: function() { return '$ termvana' },
-            spinner: '/assets/spinner.gif',
-            loop: function(val) {
-              $.readline.addHistory(val);
-              $.ws().send(JSON.stringify({full_command: val}));
-            }
-            });
+          })// .repl({
+            // resultPrompt: '',
+            // startMessage: function() { return '$ termvana' },
+           //  spinner: '/assets/spinner.gif',
+           //  loop: function(val) {
+            //   $.readline.addHistory(val);
+            //   $.ws().send(JSON.stringify({full_command: val}));
+           //  }
+            // });
 
-        $(window).click(function(){ $('#input').focus(); });
+        // $(window).click(function(){ $('input.prompt-input:last').focus(); });-->
       });
     </script>
   </head>
   <body>
     <section class="termkitCommandView">
-      <form id="terminal">
-        <input id='input' type='text'>
-      </form>
     </section>
     <footer>
       <div id="current_working_dir"></div>
