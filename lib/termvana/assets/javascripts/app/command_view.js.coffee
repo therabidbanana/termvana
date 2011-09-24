@@ -26,9 +26,11 @@ App.Views.Command = Backbone.View.extend
     this.rerender()
     $(this.el).addClass('first-run')
     $('.termkitCommandView').append(this.el)
+    $('input', this.el).focus()
     return this
   rerender: ->
-    console.log("rerendering cid #{this.model.cid}")
     $(this.el).html JST['templates/command']({command: this.model})
+    if($('input:focus').length != 0)
+      $('.termkitCommandView').scrollTo($('input:focus'))
     return this
 

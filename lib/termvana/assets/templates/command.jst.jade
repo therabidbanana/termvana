@@ -2,7 +2,8 @@
   form.terminal
     header.prompt
       span &gt;&gt;
-      input.prompt-input(value=command.get('input'))
-    section.code
-      pre
-        = command.get('results')
+      input.prompt-input(name="input", value=command.get('input'))
+    if command.has('results')
+      section.code(class=command.get('type') == "error" ? "error" : "")
+        pre
+          = command.get('results')

@@ -112,9 +112,28 @@ footer div{
   border-radius: 8px;
 }
 
+.first-run{
+  margin-bottom: 40px;
+}
+
+.command{
+  padding: 0.5em 1em 0.5em;
+  
+}
+
+.command .code{
+  margin: 0.5em 1em 0.5em 0.8em;
+}
+
 .prompt-input{
   background: transparent;
   color: white;
   border: none;
   font-size: 1.2em;
+  width: 80%;
+}
+
+.prompt-input:focus {
+  border: none;
+  outline: none;
 }

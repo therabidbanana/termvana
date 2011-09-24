@@ -3,11 +3,11 @@ Then /^my working directory should be "([^"]*)"$/ do |arg1|
 end
 
 Then /^I should get "([^"]*)"$/ do |arg1|
-  page.all('.command').last.should have_content(arg1)
+  page.all('.code').last.should have_content(arg1)
 end
 
 Then /^I should get an error saying "([^"]*)"$/ do |arg1|
-  page.all('.error').last.should have_content(arg1)
+  page.all('.code.error').last.should have_content(arg1)
 end
 
 

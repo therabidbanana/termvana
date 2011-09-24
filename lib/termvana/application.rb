@@ -5,6 +5,8 @@ require 'http_router'
 require 'async-rack'
 require 'virtus'
 require 'sprockets'
+require 'coffee_script'
+require 'erb'
 require "tilt-jade/template"
 require "jade_js/source"
 require 'active_support/json'
