@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-script'
   s.add_dependency 'tilt-jade'
   s.add_dependency 'sass'
+  s.add_dependency 'trollop'
   s.add_dependency 'activesupport'
   s.files = Dir.glob(%w[{lib,test}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} **/deps.rip]) + %w{Rakefile termvana.gemspec}
   s.files += Dir.glob('lib/**/*.{css,html,js,gif}')

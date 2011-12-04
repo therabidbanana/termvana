@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'termvana'
-Termvana.start()
+require 'trollop'
+opts = Trollop::options do
+  opt :port, "Port Number", :type => :int, :default => 5432
+  opt :open, "Open the Browser", :default => false
+end
+Termvana.start(opts)

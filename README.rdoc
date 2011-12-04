@@ -19,7 +19,7 @@ To start the server
 
     $ termvana
 
-Termvana will be available on port 5432
+Termvana will be available on port 5432 - change port with -p [port] arguments
 
 Also notice that a subset of readline's functionality is available.  Try C-l, C-r or C-p and they
 should do what readline normally does. For more keybindings, see
@@ -42,5 +42,3 @@ termvana is MIT licensed. termvana comes bundled with other libraries which have
 licenses: jquery (GPL2 and MIT), jquery.hotkeys plugin (no license), repl.js jquery plugin (MIT) and
 readline.js jquery plugin (MIT).
 
-== Todo
-* Tests
