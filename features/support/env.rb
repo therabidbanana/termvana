@@ -15,7 +15,7 @@ Capybara.app_host = "#{Capybara.default_host}:#{Capybara.server_port}"
 Thread.new {
   puts "Running server"
   # Thin::Logging.silent = true
-  Termvana.start(Capybara.server_port)
+  Termvana.start(:port => Capybara.server_port)
 }
 Capybara.run_server = false
 
