@@ -1,4 +1,5 @@
 source :rubygems
+gem 'cramp', :git => "https://github.com/lifo/cramp.git"
 gemspec
 
 group :test do
